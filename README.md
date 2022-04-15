@@ -32,16 +32,16 @@ ________________________________________________________________________
 
 a - http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789   	POST bearer token
 
-b - http://testlaraka/booksApi 		GET;	
+b - http://testlaraka/booksApi 		GET; *бес токена	
 
-c - http://testlaraka/booksApi/5  	GET;
+c - http://testlaraka/booksApi/5  	GET; *бес токена
 
-d - http://testlaraka/api/bookUpdate/4?title=ffsdf     PUT
+d - http://testlaraka/api/bookUpdate/4?title=ffsdf     PUT *необходим токен
 
-e - http://testlaraka/api/bookDeleted/4      PUT 
+e - http://testlaraka/api/bookDeleted/4      PUT *необходим токен
 
-f - http://testlaraka/authorsApi 	 GET;
+f - http://testlaraka/authorsApi 	 GET; *бес токена
 
-g - http://testlaraka/authorsApi/5 	 GET;
+g - http://testlaraka/authorsApi/5 	 GET; *бес токена
 
-h - http://testlaraka/api/authorUpdate/2?name=TheBestAuthor       PUT
+h - http://testlaraka/api/authorUpdate/2?name=TheBestAuthor       PUT *необходим токен
