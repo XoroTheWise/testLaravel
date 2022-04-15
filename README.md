@@ -29,7 +29,7 @@ h.	Обновление данных автора, авторизация под
 
 Реализация:
 
-a - http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789   	POST bearer token;
+a - http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789   	POST <p style="red">bearer token</p>;
 
 b - http://testlaraka/booksApi 		GET;	
 
