@@ -1,6 +1,6 @@
 # Тестовое задание по Laravel. 
 
-3 таблицы, связь "один ко многим" и "многие ко многим", присутствует авторизация под авторами и админами, как по web, так и по api. Админам доступен CRUD-интерфейс для всех таблиц и Rest Api, авторам - только api. Дамп бд закинул (testlaraka.sql).
+Три таблицы, связь "один ко многим" и "многие ко многим", присутствует авторизация под авторами и админами, как по web, так и по api. Админам доступен CRUD-интерфейс для всех таблиц и Rest Api, авторам - только api. Дамп бд закинул (testlaraka.sql).
 
 Для Api использовал [PostMan](https://www.postman.com/)
  
@@ -21,24 +21,50 @@ f.	Получение списка авторов с указанием коли
 g.	Получение данных автора со списком книг, авторизация не обязательна.
 
 h.	Обновление данных автора, авторизация под  автором обязательна (можно обновлять только свои данные).
+## 
+## Реализация APi:
 
 
-________________________________________________________________________
 
-Реализация:
+**a**. *POST bearer token*:
 
-a - http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789   	POST bearer token
+```bash
+http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789   	
+``` 
 
-b - http://testlaraka/booksApi 		GET; *без токена	
 
-c - http://testlaraka/booksApi/5  	GET; *без токена
 
-d - http://testlaraka/api/bookUpdate/4?title=ffsdf     PUT *необходим токен
+**b**. *GET без токена*:
+```bash
+http://testlaraka/booksApi 		
+``` 
 
-e - http://testlaraka/api/bookDeleted/4      PUT *необходим токен
+**c**. *GET без токена*:
+```bash
+http://testlaraka/booksApi/5 		
+``` 
 
-f - http://testlaraka/authorsApi 	 GET; *без токена
+**d**. *PUT необходим токен*:
+```bash
+http://testlaraka/api/bookUpdate/4?title=ffsdf 		
+``` 
 
-g - http://testlaraka/authorsApi/5 	 GET; *без токена
+**e**. *PUT необходим токен*:
+```bash
+http://testlaraka/api/bookDeleted/4 		
+``` 
 
-h - http://testlaraka/api/authorUpdate/2?name=TheBestAuthor       PUT *необходим токен
+**f**. *GET без токена*:
+```bash
+http://testlaraka/authorsApi		
+``` 
+
+**f**. *GET без токена*:
+```bash
+http://testlaraka/authorsApi/5		
+``` 
+
+**f**. *PUT необходим токен*:
+```bash
+http://testlaraka/api/authorUpdate/2?name=TheBestAuthor
+``` 
