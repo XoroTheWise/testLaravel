@@ -2,9 +2,15 @@
 
 Три таблицы, связь "один ко многим" и "многие ко многим", присутствует авторизация под авторами и админами, как по web, так и по api. Админам доступен CRUD-интерфейс для всех таблиц и Rest Api, авторам - только api. Дамп бд закинул ( *testlaraka.sql* ).
 
-Для Api использовал [PostMan](https://www.postman.com/), коллекция в репозитории ( *testLaraka.postman_collection (1).json* ).
+Для Api использовал [PostMan](https://www.postman.com/), коллекция в репозитории ( *testLaraka.postman_collection (1).json* ). Для JWT-авторизцаии необходимо выбрать тип авторизации Bearer Token и указать в поле *Token* возвращаемый токен login-запроса. 
  
 ## API:
+
+Используется JWT-авторизация, необходимо установить JWT-токен 
+```bash
+php artisan jwt:secret
+```
+
 
 a.	Запрос на авторизацию пользователя.
 
@@ -49,7 +55,7 @@ http://testlaraka/booksApi/5
 http://testlaraka/api/bookUpdate/4?title=ffsdf 		
 ``` 
 
-**e**. *PUT необходим токен*:
+**e**. *DELETE необходим токен*:
 ```bash
 http://testlaraka/api/bookDeleted/4 		
 ``` 
