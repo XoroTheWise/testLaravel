@@ -32,45 +32,45 @@ h.	Обновление данных автора, авторизация под
 
 
 
-**a**. *POST bearer token*:
+**a**. *POST bearer token, можно вводить как в параметрах, так и в body*:
 
 ```bash
-http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789   	
+http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789	
 ``` 
 
 
 
 **b**. *GET без токена*:
 ```bash
-http://testlaraka/booksApi 		
+http://testlaraka/api/books	
 ``` 
 
 **c**. *GET без токена*:
 ```bash
-http://testlaraka/booksApi/5 		
+http://testlaraka/api/books/52		
 ``` 
 
 **d**. *PUT необходим токен*:
 ```bash
-http://testlaraka/api/bookUpdate/4?title=ffsdf 		
+http://testlaraka/api/book-update/18?title=555		
 ``` 
 
 **e**. *DELETE необходим токен*:
 ```bash
-http://testlaraka/api/bookDeleted/4 		
+http://testlaraka/api/book-delete/49		
 ``` 
 
 **f**. *GET без токена*:
 ```bash
-http://testlaraka/authorsApi		
+http://testlaraka/api/authors		
 ``` 
 
 **f**. *GET без токена*:
 ```bash
-http://testlaraka/authorsApi/5		
+http://testlaraka/api/authors/5	
 ``` 
 
-**f**. *PUT необходим токен*:
+**f**. *POST необходим токен, указать данные в body (name &&|| email)*:
 ```bash
-http://testlaraka/api/authorUpdate/2?name=TheBestAuthor
+http://testlaraka/api/author-update/5
 ``` 
