@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "a942f8f5-e079-4a44-b4d2-6e1992c2b0ba",
+		"name": "testLaraka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@mail.ru\",\r\n    \"password\": \"123456789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "admin@mail.ru"
+						},
+						{
+							"key": "password",
+							"value": "123456789"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://testlaraka/api/books",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bookId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://testlaraka/api/books/52",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"books",
+						"52"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bookUpdate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://testlaraka/api/book-update/18?title=555",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"book-update",
+						"18"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "555"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bookDelete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://testlaraka/api/book-delete/49",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"book-delete",
+						"49"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://testlaraka/api/authors",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://testlaraka/api/authors/5",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"authors",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authorUpdate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"admin\",\r\n    \"email\": \"admin@mail.ru\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://testlaraka/api/author-update/5",
+					"protocol": "http",
+					"host": [
+						"testlaraka"
+					],
+					"path": [
+						"api",
+						"author-update",
+						"5"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "admin",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

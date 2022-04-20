@@ -16,14 +16,17 @@ class bookResource extends JsonResource
     {
         $genres = [];
         foreach ($this->genres as $genre) {
-            $genres[] = $genre->genre;
+            $genres[] = [
+                'id' => $genre->id,
+                'name' => $genre->name,
+            ];
         }
 
         return [
-            'Id' => $this->id,
-            'Title' => $this->title,
-            'Author' => $this->authors->name,
-            'Genres' => $genres,
+            'id' => $this->id,
+            'title' => $this->title,
+            'author' => $this->author->name,
+            'genre' => $genres,
         ];
     }
 }

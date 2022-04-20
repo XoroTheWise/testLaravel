@@ -2,53 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\genres;
-use Illuminate\Http\Request;
+use App\Http\Requests\GenreRequest;
+use App\Models\genre;
 
 class GenreController extends Controller
 {
     public function index()
     {
-        $genres = genres::paginate(10);
-        return view('genres.index', compact('genres'));
+        $genres = genre::paginate(10);
+        return view('genre.index', compact('genres'));
     }
 
     public function create()
     {
-        return view('genres.create');
+        return view('genre.create');
     }
 
-    public function store()
+    public function store(GenreRequest $request)
     {
-        $data = request()->validate([
-            'genre' => 'string',
-        ]);
-        genres::create($data);
-        return redirect()->route('genres.index');
+        $data = $request->validated();
+        genre::create($data);
+        return redirect()->route('genre.index');
     }
 
-    public function show(genres $genre)
+    public function show($id)
     {
-        return view('genres.show', compact('genre'));
+        $genre = genre::find($id);
+        return view('genre.show', compact('genre'));
     }
 
-    public function edit(genres $genre)
+    public function edit($id)
     {
-        return view('genres.edit', compact('genre'));
+        $genre = genre::find($id);
+        return view('genre.edit', compact('genre'));
     }
 
-    public function update(genres $genre)
+    public function update(GenreRequest $request, $id)
     {
-        $data = request()->validate([
-            'genre' => 'string',
-        ]);
+        $genre = genre::find($id);
+        $data = $request->validated();
         $genre->update($data);
-        return redirect()->route('genres.show', $genre->id);
+        return redirect()->route('genre.show', $genre->id);
     }
 
-    public function destroy(genres $genre)
+    public function destroy($id)
     {
+        $genre = genre::find($id);
         $genre->delete();
-        return redirect()->route('genres.index');
+        return redirect()->route('genre.index');
     }
 }

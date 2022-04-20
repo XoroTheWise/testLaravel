@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\books;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class authorResource extends JsonResource
@@ -17,15 +16,18 @@ class authorResource extends JsonResource
     {
         $books = [];
         foreach ($this->books as $book) {
-            $books[] = $book->title;
+            $books[] = [
+                'id' => $book->id,
+                'title' => $book->title,
+            ];
         }
 
         $col = count($this->books);
         return [
-            'Id' => $this->id,
-            'Name' => $this->name,
-            'NumBook' => $col,
-            'Books' => $books,
+            'id' => $this->id,
+            'name' => $this->name,
+            'num-book' => $col,
+            'book' => $books,
         ];
     }
 }
