@@ -2,75 +2,69 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\authors;
-use App\Models\BookGenre;
-use App\Models\books;
-use App\Models\genres;
-use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
+use App\Models\Author;
+use App\Models\book;
+use App\Models\Genre;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = books::paginate(10);
-        return view('books.index', compact('books'));
+        $books = book::paginate(10);
+        return view('book.index', compact('books'));
     }
 
     public function create()
     {
-        $authors = authors::all();
-        $genres = genres::all();
-        return view('books.create', compact('authors', 'genres'));
+        $author = author::all();
+        $genre = genre::all();
+        return view('book.create', compact('author', 'genre'));
     }
 
-    public function store()
+    public function store(BookRequest $request)
     {
-        $data = request()->validate([
-            'title' => 'required|string',
-            'authorId' => 'integer',
-            'genreId' => '',
-        ]);
+        $data = $request->validated();
 
-        $genres = $data['genreId'];
-        unset($data['genreId']);
-        $bookID = books::create($data);
-        $bookID->genres()->attach($genres);
+        $genre = $data['genre_id'];
+        unset($data['genre_id']);
 
-        return redirect()->route('books.index');
+        $bookID = book::create($data);
+        $bookID->genres()->attach($genre);
+        return redirect()->route('book.index');
     }
 
-    public function show(books $book, BookGenre $bookGenre)
+    public function show($id)
     {
-        return view('books.show', compact('book', 'bookGenre'));
+        $book = book::find($id);
+        return view('book.show', compact('book'));
     }
 
-    public function edit(books $book, BookGenre $bookGenre)
+    public function edit($id)
     {
-        $authors = authors::all();
-        $genres = genres::all();
-        return view('books.edit', compact('book', 'authors', 'genres', 'bookGenre'));
+        $book = book::find($id);
+        $authors = author::all();
+        $genres = genre::all();
+        return view('book.edit', compact('book', 'authors', 'genres'));
     }
 
-    public function update(books $book, BookGenre $bookGenre)
+    public function update(BookRequest $request, $id)
     {
-        $data = request()->validate([
-            'title' => 'string',
-            'authorId' => 'integer',
-            'genreId' => '',
-        ]);
-        $genres = $data['genreId'];
-        unset($data['genreId']);
+        $book = book::find($id);
+        $data = $request->validated();
+
+        $genres = $data['genre_id'];
+        unset($data['genre_id']);
 
         $book->update($data);
         $book->genres()->sync($genres);
-        return redirect()->route('books.show', $book->id);
+        return redirect()->route('book.show', $book->id);
     }
 
-    public function destroy(books $book)
+    public function destroy($id)
     {
-        BookGenre::where('bookId', $book->id)->delete();
+        $book = book::find($id);
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('book.index');
     }
 }

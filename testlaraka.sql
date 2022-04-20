@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `books`
+-- Структура таблицы `book`
 --
 
-CREATE TABLE `books` (
+CREATE TABLE `book` (
   `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE `books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `books`
+-- Дамп данных таблицы `book`
 --
 
-INSERT INTO `books` (`id`, `title`, `created_at`, `updated_at`, `authorId`) VALUES
+INSERT INTO `book` (`id`, `title`, `created_at`, `updated_at`, `authorId`) VALUES
 (1, 'How to write a better book? *for sams', NULL, '2022-04-14 10:07:36', 3),
 (2, 'MyFerstBook', NULL, '2022-04-14 22:48:02', 6),
 (7, 'How to save your people? Frostmourne Edition.', '2022-04-14 09:39:56', '2022-04-14 10:12:57', 8),
@@ -56,10 +56,10 @@ INSERT INTO `books` (`id`, `title`, `created_at`, `updated_at`, `authorId`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `book_genres`
+-- Структура таблицы `book_genre`
 --
 
-CREATE TABLE `book_genres` (
+CREATE TABLE `book_genre` (
   `id` bigint UNSIGNED NOT NULL,
   `bookId` bigint UNSIGNED NOT NULL,
   `genreId` bigint UNSIGNED NOT NULL,
@@ -68,10 +68,10 @@ CREATE TABLE `book_genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `book_genres`
+-- Дамп данных таблицы `book_genre`
 --
 
-INSERT INTO `book_genres` (`id`, `bookId`, `genreId`, `created_at`, `updated_at`) VALUES
+INSERT INTO `book_genre` (`id`, `bookId`, `genreId`, `created_at`, `updated_at`) VALUES
 (14, 7, 3, NULL, NULL),
 (16, 8, 1, NULL, NULL),
 (17, 8, 2, NULL, NULL),
@@ -124,10 +124,10 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `genres`
+-- Структура таблицы `genre`
 --
 
-CREATE TABLE `genres` (
+CREATE TABLE `genre` (
   `id` bigint UNSIGNED NOT NULL,
   `genre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -135,10 +135,10 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `genres`
+-- Дамп данных таблицы `genre`
 --
 
-INSERT INTO `genres` (`id`, `genre`, `created_at`, `updated_at`) VALUES
+INSERT INTO `genre` (`id`, `genre`, `created_at`, `updated_at`) VALUES
 (1, 'Хоррор', NULL, '2022-04-14 10:07:54'),
 (2, 'Романтика', NULL, '2022-04-14 10:08:04'),
 (3, '21+', '2022-04-14 09:28:59', '2022-04-14 10:08:12'),
@@ -171,10 +171,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_04_06_113801_create_authors_table', 1),
-(6, '2022_04_06_113802_create_genres_table', 1),
-(7, '2022_04_06_113803_create_books_table', 1),
-(8, '2022_04_09_094151_create_book_genres_table', 1),
+(5, '2022_04_06_113801_create_author_table', 1),
+(6, '2022_04_06_113802_create_genre_table', 1),
+(7, '2022_04_06_113803_create_book_table', 1),
+(8, '2022_04_09_094151_create_book_genre_table', 1),
 (9, '2022_04_11_143522_add_column_role_to_users_table', 1);
 
 -- --------------------------------------------------------
@@ -244,16 +244,16 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `role`, `remember_token`
 --
 
 --
--- Индексы таблицы `books`
+-- Индексы таблицы `book`
 --
-ALTER TABLE `books`
+ALTER TABLE `book`
   ADD PRIMARY KEY (`id`),
   ADD KEY `book_author_idx` (`authorId`);
 
 --
--- Индексы таблицы `book_genres`
+-- Индексы таблицы `book_genre`
 --
-ALTER TABLE `book_genres`
+ALTER TABLE `book_genre`
   ADD PRIMARY KEY (`id`),
   ADD KEY `book_genre_book_idx` (`bookId`),
   ADD KEY `book_genre_genre_idx` (`genreId`);
@@ -266,11 +266,11 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Индексы таблицы `genres`
+-- Индексы таблицы `genre`
 --
-ALTER TABLE `genres`
+ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `genres_genre_unique` (`genre`);
+  ADD UNIQUE KEY `genre_genre_unique` (`genre`);
 
 --
 -- Индексы таблицы `migrations`
@@ -303,15 +303,15 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT для таблицы `books`
+-- AUTO_INCREMENT для таблицы `book`
 --
-ALTER TABLE `books`
+ALTER TABLE `book`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT для таблицы `book_genres`
+-- AUTO_INCREMENT для таблицы `book_genre`
 --
-ALTER TABLE `book_genres`
+ALTER TABLE `book_genre`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
@@ -321,9 +321,9 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `genres`
+-- AUTO_INCREMENT для таблицы `genre`
 --
-ALTER TABLE `genres`
+ALTER TABLE `genre`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
@@ -349,17 +349,17 @@ ALTER TABLE `users`
 --
 
 --
--- Ограничения внешнего ключа таблицы `books`
+-- Ограничения внешнего ключа таблицы `book`
 --
-ALTER TABLE `books`
+ALTER TABLE `book`
   ADD CONSTRAINT `book_author_fk` FOREIGN KEY (`authorId`) REFERENCES `users` (`id`);
 
 --
--- Ограничения внешнего ключа таблицы `book_genres`
+-- Ограничения внешнего ключа таблицы `book_genre`
 --
-ALTER TABLE `book_genres`
-  ADD CONSTRAINT `book_genre_book_fk` FOREIGN KEY (`bookId`) REFERENCES `books` (`id`),
-  ADD CONSTRAINT `book_genre_genre_fk` FOREIGN KEY (`genreId`) REFERENCES `genres` (`id`);
+ALTER TABLE `book_genre`
+  ADD CONSTRAINT `book_genre_book_fk` FOREIGN KEY (`bookId`) REFERENCES `book` (`id`),
+  ADD CONSTRAINT `book_genre_genre_fk` FOREIGN KEY (`genreId`) REFERENCES `genre` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

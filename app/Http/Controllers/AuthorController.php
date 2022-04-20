@@ -2,55 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\authors;
-use App\Models\books;
-use Illuminate\Http\Request;
+use App\Http\Requests\AuthorRequest;
+use App\Models\author;
 
 class AuthorController extends Controller
 {
     public function index()
     {
-        $authors = authors::paginate(10);
-        return view('authors.index', compact('authors'));
+        $authors = author::paginate(10);
+        return view('author.index', compact('authors'));
     }
 
     public function create()
     {
-        return view('authors.create');
+        return view('author.create');
     }
 
     public function store()
     {
-        $data = request()->validate([
-            'name' => 'string',
-        ]);
-        authors::create($data);
-        return redirect()->route('authors.index');
+        //
     }
 
-    public function show(authors $author)
+    public function show($id)
     {
-        return view('authors.show', compact('author'));
+        $author = author::find($id);
+        return view('author.show', compact('author'));
     }
 
-    public function edit(authors $author)
+    public function edit($id)
     {
-        return view('authors.edit', compact('author'));
+        $author = author::find($id);
+        return view('author.edit', compact('author'));
     }
 
-    public function update(authors $author)
+    public function update(AuthorRequest $request, $id)
     {
-        $data = request()->validate([
-            'name' => 'string',
-        ]);
+        $author = author::find($id);
+        $data = $request->validated();
         $author->update($data);
-        return redirect()->route('authors.show', $author->id);
+        return redirect()->route('author.show', $author->id);
     }
 
-    public function destroy(authors $author)
+    public function destroy($id)
     {
+        $author = author::find($id);
         $author->delete();
-        return redirect()->route('authors.index');
+        return redirect()->route('author.index');
     }
 
 }

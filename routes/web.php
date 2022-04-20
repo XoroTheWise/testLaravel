@@ -6,48 +6,48 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\Api\bookApiController;
-use App\Http\Controllers\Api\authorApiController;
+use App\Http\Controllers\Api\booksController;
+use App\Http\Controllers\Api\authorsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('main');
 Route::get('/home', [MainController::class, 'index'])->name('user');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/admin', [BookController::class, 'index'])->name('books.index');
+//    Route::get('/admin', [BookController::class, 'index']);
     Route::group(['namespace' => 'Book'], function () {
-        Route::get('/books', [BookController::class, 'index'])->name('books.index');
-        Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
-        Route::post('/books', [BookController::class, 'store'])->name('books.store');
-        Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
-        Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
-        Route::patch('/books/{book}', [BookController::class, 'update'])->name('books.update');
-        Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+        Route::get('/book', [BookController::class, 'index'])->name('book.index');
+        Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+        Route::post('/book', [BookController::class, 'store'])->name('book.store');
+        Route::get('/book/{id}', [BookController::class, 'show'])->name('book.show');
+        Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
+        Route::patch('/book/{id}', [BookController::class, 'update'])->name('book.update');
+        Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
     });
 
     Route::group(['namespace' => 'Author'], function () {
-        Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
-        Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
-        Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
-        Route::get('/authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
-        Route::get('/authors/{author}/edit', [AuthorController::class, 'edit'])->name('authors.edit');
-        Route::patch('/authors/{author}', [AuthorController::class, 'update'])->name('authors.update');
-        Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+        Route::get('/author', [AuthorController::class, 'index'])->name('author.index');
+        Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+        Route::post('/author', [AuthorController::class, 'store'])->name('author.store');
+        Route::get('/author/{id}', [AuthorController::class, 'show'])->name('author.show');
+        Route::get('/author/{id}/edit', [AuthorController::class, 'edit'])->name('author.edit');
+        Route::patch('/author/{id}', [AuthorController::class, 'update'])->name('author.update');
+        Route::delete('/author/{id}', [AuthorController::class, 'destroy'])->name('author.destroy');
     });
 
     Route::group(['namespace' => 'Genre'], function () {
-        Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
-        Route::get('/genres/create', [GenreController::class, 'create'])->name('genres.create');
-        Route::post('/genres', [GenreController::class, 'store'])->name('genres.store');
-        Route::get('/genres/{genre}', [GenreController::class, 'show'])->name('genres.show');
-        Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
-        Route::patch('/genres/{genre}', [GenreController::class, 'update'])->name('genres.update');
-        Route::delete('/genres/{genre}', [GenreController::class, 'destroy'])->name('genres.destroy');
+        Route::get('/genre', [GenreController::class, 'index'])->name('genre.index');
+        Route::get('/genre/create', [GenreController::class, 'create'])->name('genre.create');
+        Route::post('/genre', [GenreController::class, 'store'])->name('genre.store');
+        Route::get('/genre/{id}', [GenreController::class, 'show'])->name('genre.show');
+        Route::get('/genre/{id}/edit', [GenreController::class, 'edit'])->name('genre.edit');
+        Route::patch('/genre/{id}', [GenreController::class, 'update'])->name('genre.update');
+        Route::delete('/genre/{id}', [GenreController::class, 'destroy'])->name('genre.destroy');
     });
 });
 
 Auth::routes();
 
 Route::apiResources([
-    'booksApi' => bookApiController::class,
-    'authorsApi' => authorApiController::class,
+    'api/books' => booksController::class,
+    'api/authors' => authorsController::class,
 ]);

@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\bookApiController;
-use App\Http\Controllers\Api\authorApiController;
+use App\Http\Controllers\Api\BooksController;
+use App\Http\Controllers\Api\authorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +32,8 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::group(['namespace' => 'Authors', 'middleware' => 'jwt.auth'], function () {
-    Route::put('/bookUpdate/{id}', [bookApiController::class, 'update']);
-    Route::put('/bookDeleted/{id}', [bookApiController::class, 'destroy']);
-    Route::put('/authorUpdate/{id}', [authorApiController::class, 'update']);
+Route::group(['namespace' => 'author', 'middleware' => 'jwt.auth'], function () {
+    Route::put('/book-update/{id}', [BooksController::class, 'update']);
+    Route::delete('/book-delete/{id}', [BooksController::class, 'destroy']);
+    Route::post('/author-update/{id}', [authorsController::class, 'update']);
 });

@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Http\Exceptions\HttpResponseException;
-
 use Illuminate\Foundation\Http\FormRequest;
 
-class bookUpdateRequest extends FormRequest
+class BookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,15 +25,8 @@ class bookUpdateRequest extends FormRequest
     {
         return [
             'title' => 'string|max:50|min:1|required',
+            'author_id' => 'required|integer',
+            'genre_id' => 'required',
         ];
-    }
-
-    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Ошибка валидации',
-            'data' => $validator->errors(),
-        ]));
     }
 }
