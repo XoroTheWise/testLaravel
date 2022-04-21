@@ -1,38 +1,96 @@
-@extends('layouts.admin');
+@extends('layouts.admin')
 
 @section('pageTitle') Update book @endsection
 @section('content')
 
-    @extends('layouts.upgradeBook')
-        @section('actionForm'){{route('book.update', $book->id)}}@endsection
-        @section('methodForm')@method('patch')@endsection
-        @section('valueForm'){{old('title') ? old('title') : $book->title}}@endsection
-        @section('bookIdForm')<input name="book_id" id="book_id" value="{{$book->id}} " style="display: none">@endsection
-        @section('selectedAuthorsForm')
-            <select id="author" class="form-select" name="author_id">
-                @foreach($authors as $thisAuthor)
-                    <option
+    <div class="container col-6 font-monospace" style="width: 700px; margin-top: 100px">
+        <hr>
+        <form action="
+                @if(!empty($book))
+                    {{route('book.update', $book->id)}}
+                @endif
+                @if(empty($book))
+                    {{route('book.store')}}
+                @endif
+            " method="post">
 
-                        {{ $thisAuthor->id == $book->author->id ? ' selected ' : '' }}
-                        value="{{$thisAuthor->id}}">{{$thisAuthor->name}}</option>
-                @endforeach
-            </select>
-        @endsection
-        @section('genresForm')
-            @foreach($genres as $genre)
-                <option
-                    @foreach($book->genres as $bookGenre)
-                    {{ $genre->id == $bookGenre->id ? ' selected ' : '' }}
+            @csrf
+
+            @if(!empty($book))
+                @method('patch')
+            @endif
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title book</label>
+                <input name="title" type="text" class="form-control" id="title"
+                       @if(!empty($book))
+                            value="{{old('title') ? old('title') : $book->title}}">
+                            <input name="book_id" id="book_id" value="{{$book->id}} " style="display: none">
+                       @endif
+                       @if(empty($book))
+                            value="{{old('title')}}">
+                       @endif
+
+                @error('title')
+                <p class="text-danger ">{{$message}}</p>
+                @enderror
+
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+
+                <select id="author" class="form-select" name="author_id">
+                    @foreach($author as $thisAuthor)
+                        <option
+                            @if(!empty($book))
+                                {{ $thisAuthor->id == $book->author->id ? ' selected ' : '' }}
+                            @endif
+                                value="{{$thisAuthor->id}}">{{$thisAuthor->name}}
+                        </option>
                     @endforeach
-                    value="{{$genre->id}}">{{$genre->name}}</option>
-            @endforeach
-        @endsection
+                </select>
+                @error('author_id')
+                <p class="text-danger ">{{$message}}</p>
+                @enderror
+            </div>
+            <div class="form-group mb-3">
+                <label for="genre" class="form-label">Genres</label>
+                <select multiple id="genre" class="form-control" name="genres[]">
 
-        @section('genresForm')
-            @foreach($genres as $genre)
-                <option value="{{$genre->id}}">{{$genre->name}}</option>
-            @endforeach
-        @endsection
-        @section('nameButton')Update @endsection
+                    @foreach($genre as $thisGenre)
+                        <option
+                        @if(!empty($book))
+                            @foreach($book->genres as $bookGenre)
+                            {{ $thisGenre->id == $bookGenre->id ? ' selected ' : '' }}
+                            @endforeach
+                            value="{{$thisGenre->id}}">{{$thisGenre->name}}
+                        @endif
+                        @if(empty($book))
+                            value="{{$thisGenre->id}}"
+                            {{ (collect(old('genres'))->contains($thisGenre->id)) ? ' selected ' : '' }}
+                            >{{$thisGenre->name}}
+                        @endif
+                        </option>
+                    @endforeach
 
+                </select>
+
+                @error('genres')
+                <p class="text-danger ">{{$message}}</p>
+                @enderror
+
+            </div>
+            <button type="submit" class="btn btn-primary">
+                @if(!empty($book))
+                    Update
+                @endif
+                @if(empty($book))
+                    Create
+                @endif
+
+            </button>
+            <a class="float-end btn btn-warning m-lg-1" href="{{route('book.index')}}">Back</a>
+        </form>
+        <hr>
+    </div>
 @endsection

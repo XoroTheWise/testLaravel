@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatebookgenreTable extends Migration
+class CreateBooksGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatebookgenreTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_genre', function (Blueprint $table) {
+        Schema::create('books_genres', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('book_id');
@@ -22,8 +22,8 @@ class CreatebookgenreTable extends Migration
             $table->index('book_id', 'book_genre_book_idx');
             $table->index('genre_id', 'book_genre_genre_idx');
 
-            $table->foreign('book_id', 'book_genre_book_fk')->on('book')->references('id')->onDelete('cascade');;
-            $table->foreign('genre_id', 'book_genre_genre_fk')->on('genre')->references('id')->onDelete('cascade');;
+            $table->foreign('book_id', 'book_genre_book_fk')->on('books')->references('id')->onDelete('cascade');;
+            $table->foreign('genre_id', 'book_genre_genre_fk')->on('genres')->references('id')->onDelete('cascade');;
 
             $table->timestamps();
         });
@@ -36,6 +36,6 @@ class CreatebookgenreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_genre');
+        Schema::dropIfExists('books_genres');
     }
 }

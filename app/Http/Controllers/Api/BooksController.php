@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\bookUpdateRequest;
-use App\Http\Resources\bookResource;
-use App\Models\author;
-use App\Models\book;
-use App\Models\genre;
+use App\Http\Requests\api\BookUpdateRequest;
+use App\Http\Resources\api\BookResource;
+use App\Models\Author;
+use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -20,7 +20,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        return bookResource::collection(book::all());
+        return BookResource::collection(Book::all());
     }
 
     /**
@@ -31,7 +31,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        $created_genre = genre::create($request->all());
+        $created_genre = Genre::create($request->all());
         return $created_genre;
     }
 
@@ -43,13 +43,13 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        if (!book::find($id)) {
+        if (!Book::find($id)) {
             $data = [
                 'error' => 'There is no book with this id',
             ];
             return $data;
         }
-        return new bookResource(book::findOrFail($id));
+        return new BookResource(book::findOrFail($id));
     }
 
     /**
@@ -59,22 +59,21 @@ class BooksController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(bookUpdateRequest $request, $id)
+    public function update(BookUpdateRequest $request, $id)
     {
-        if (!book::find($id)) {
+        if (!Book::find($id)) {
             $data = [
                 'error' => 'There is no book with this id',
             ];
             return $data;
         }
-
-        $book = book::findOrFail($id);
-        $author = author::find(auth()->user()->id);
+        $book = Book::findOrFail($id);
+        $author = Author::find(auth()->user()->id);
 
         if ($author->id != $book->author_id) {
             $data = [
                 'message' => 'This is not Your book. Your book',
-                'books' => bookResource::collection($author->books),
+                'books' => BookResource::collection($author->books),
             ];
             return $data;
         } else {
@@ -95,15 +94,15 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        if (!book::find($id)) {
+        if (!Book::find($id)) {
             $data = [
                 'error' => 'There is no book with this id',
             ];
             return $data;
         }
 
-        $book = book::findOrFail($id);
-        $author = author::find(auth()->user()->id);
+        $book = Book::findOrFail($id);
+        $author = Author::find(auth()->user()->id);
 
         if ($author->id != $book->author_id) {
             $data = [

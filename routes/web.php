@@ -6,14 +6,13 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\Api\booksController;
-use App\Http\Controllers\Api\authorsController;
+use App\Http\Controllers\Api\BooksController;
+use App\Http\Controllers\Api\AuthorsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('main');
 Route::get('/home', [MainController::class, 'index'])->name('user');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-//    Route::get('/admin', [BookController::class, 'index']);
     Route::group(['namespace' => 'Book'], function () {
         Route::get('/book', [BookController::class, 'index'])->name('book.index');
         Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
@@ -48,6 +47,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 Auth::routes();
 
 Route::apiResources([
-    'api/books' => booksController::class,
-    'api/authors' => authorsController::class,
+    'api/books' => BooksController::class,
+    'api/authors' => AuthorsController::class,
 ]);

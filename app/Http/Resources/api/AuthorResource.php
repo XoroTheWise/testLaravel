@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\api;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class bookResource extends JsonResource
+class AuthorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,19 +14,20 @@ class bookResource extends JsonResource
      */
     public function toArray($request)
     {
-        $genres = [];
-        foreach ($this->genres as $genre) {
-            $genres[] = [
-                'id' => $genre->id,
-                'name' => $genre->name,
+        $books = [];
+        foreach ($this->books as $book) {
+            $books[] = [
+                'id' => $book->id,
+                'title' => $book->title,
             ];
         }
 
+        $col = count($this->books);
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'author' => $this->author->name,
-            'genre' => $genres,
+            'name' => $this->name,
+            'num-book' => $col,
+            'books' => $books,
         ];
     }
 }
