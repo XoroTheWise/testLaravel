@@ -38,8 +38,6 @@ php artisan jwt:secret
 http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789	
 ``` 
 
-
-
 **b**. *GET без токена*:
 ```bash
 http://testlaraka/api/books	
@@ -50,7 +48,7 @@ http://testlaraka/api/books
 http://testlaraka/api/books/52		
 ``` 
 
-**d**. *PUT необходим токен*:
+**d**. *PUT необходим токен, можно вводить как в параметрах, так и в body*:
 ```bash
 http://testlaraka/api/book-update/18?title=555		
 ``` 
@@ -70,7 +68,7 @@ http://testlaraka/api/authors
 http://testlaraka/api/authors/5	
 ``` 
 
-**f**. *POST необходим токен, указать данные в body (name &&|| email)*:
+**f**. *POST необходим токен, указать данные в query\body (name &&|| email)*:
 ```bash
 http://testlaraka/api/author-update/5
 ``` 
