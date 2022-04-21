@@ -50,12 +50,12 @@ http://testlaraka/api/books/52
 
 **d**. *PUT необходим токен, можно вводить как в параметрах, так и в body*:
 ```bash
-http://testlaraka/api/book-update/18?title=555		
+http://testlaraka/api/book/18?title=555		
 ``` 
 
 **e**. *DELETE необходим токен*:
 ```bash
-http://testlaraka/api/book-delete/49		
+http://testlaraka/api/book/49		
 ``` 
 
 **f**. *GET без токена*:
@@ -70,5 +70,5 @@ http://testlaraka/api/authors/5
 
 **f**. *POST необходим токен, указать данные в query\body (name &&|| email)*:
 ```bash
-http://testlaraka/api/author-update/5
+http://testlaraka/api/author/5
 ``` 
