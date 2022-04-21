@@ -23,10 +23,12 @@ class BookRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'title' => 'string|max:50|min:1|required',
             'author_id' => 'required|integer',
-            'genre_id' => 'required',
+            'genres' => 'required|array',
+            'genres.*.*' => 'required|unique:genres',
         ];
     }
 }

@@ -10,15 +10,6 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"admin@mail.ru\",\r\n    \"password\": \"123456789\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://testlaraka/api/auth/login?email=admin@mail.ru&password=123456789",
 					"protocol": "http",
@@ -52,7 +43,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"value": "eyJ0e1NiJ9.eyJpc3MiOiJodHN0bGFyYWthXC9NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
 							"type": "string"
 						}
 					]
@@ -79,7 +70,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://testlaraka/api/books/52",
+					"raw": "http://testlaraka/api/books/3",
 					"protocol": "http",
 					"host": [
 						"testlaraka"
@@ -87,7 +78,7 @@
 					"path": [
 						"api",
 						"books",
-						"52"
+						"3"
 					]
 				}
 			},
@@ -101,28 +92,38 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNTQ5OTAyLCJleHAiOjE2NTA1NTM1MDIsIm5iZiI6MTY1MDU0OTkwMiwianRpIjoiSG50YVd5cUJEelpuVXFJTyIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.uXrZWVuKPxqvBkMkX82jTPHzza09532G05hJvdrPzFs",
 							"type": "string"
 						}
 					]
 				},
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"adminBok\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://testlaraka/api/book-update/18?title=555",
+					"raw": "http://testlaraka/api/book/2",
 					"protocol": "http",
 					"host": [
 						"testlaraka"
 					],
 					"path": [
 						"api",
-						"book-update",
-						"18"
+						"book",
+						"2"
 					],
 					"query": [
 						{
 							"key": "title",
-							"value": "555"
+							"value": "3333",
+							"disabled": true
 						}
 					]
 				}
@@ -137,7 +138,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNTQ5MjA5LCJleHAiOjE2NTA1NTI4MDksIm5iZiI6MTY1MDU0OTIwOSwianRpIjoidVVPSU5BbnNmMktJSlBYRSIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.Fj2SbFqob256i8g_AkZaItij1WGEbOL82pLGmEBi0m0",
 							"type": "string"
 						}
 					]
@@ -145,15 +146,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://testlaraka/api/book-delete/49",
+					"raw": "http://testlaraka/api/book/5",
 					"protocol": "http",
 					"host": [
 						"testlaraka"
 					],
 					"path": [
 						"api",
-						"book-delete",
-						"49"
+						"book",
+						"5"
 					]
 				}
 			},
@@ -184,7 +185,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://testlaraka/api/authors/5",
+					"raw": "http://testlaraka/api/authors/1",
 					"protocol": "http",
 					"host": [
 						"testlaraka"
@@ -192,7 +193,7 @@
 					"path": [
 						"api",
 						"authors",
-						"5"
+						"1"
 					]
 				}
 			},
@@ -206,7 +207,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNDQ3NTk1LCJleHAiOjE2NTA0NTExOTUsIm5iZiI6MTY1MDQ0NzU5NSwianRpIjoibmV5NktKOFZQZDFMbXZtUSIsInN1YiI6NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.-OQK6JMdFsgONMKOnuGNdkGzbh0d80xdOwFcrUxlqlw",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0bGFyYWthXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjUwNTQ5MTQxLCJleHAiOjE2NTA1NTI3NDEsIm5iZiI6MTY1MDU0OTE0MSwianRpIjoiVU1ERW9EOGF3VW0wWHkxWiIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.XX6btu94GWXFDMseByPOMwjGUgB2TNgT8b1fvLPlpxs",
 							"type": "string"
 						}
 					]
@@ -215,7 +216,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"admin\",\r\n    \"email\": \"admin@mail.ru\"\r\n}",
+					"raw": "{\r\n    \"name\": \"admi11n\",\r\n    \"email\": \"admin@mail.ru\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -223,20 +224,20 @@
 					}
 				},
 				"url": {
-					"raw": "http://testlaraka/api/author-update/5",
+					"raw": "http://testlaraka/api/author/1",
 					"protocol": "http",
 					"host": [
 						"testlaraka"
 					],
 					"path": [
 						"api",
-						"author-update",
-						"5"
+						"author",
+						"1"
 					],
 					"query": [
 						{
 							"key": "name",
-							"value": "admin",
+							"value": "111",
 							"disabled": true
 						}
 					]

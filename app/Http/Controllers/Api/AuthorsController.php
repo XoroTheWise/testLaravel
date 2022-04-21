@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\authorUpdateRequest;
-use App\Http\Resources\authorResource;
-use App\Models\author;
+use App\Http\Requests\api\AuthorUpdateRequest;
+use App\Http\Resources\api\AuthorResource;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class authorsController extends Controller
+class AuthorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class authorsController extends Controller
      */
     public function index()
     {
-        return authorResource::collection(author::all());
+        return AuthorResource::collection(Author::all());
     }
 
     /**
@@ -40,13 +40,13 @@ class authorsController extends Controller
      */
     public function show($id)
     {
-        if (!author::find($id)) {
+        if (!Author::find($id)) {
             $data = [
                 'error' => 'There is no author with this id',
             ];
             return $data;
         }
-        return new authorResource(author::findOrFail($id));
+        return new AuthorResource(Author::findOrFail($id));
     }
 
     /**
@@ -56,17 +56,17 @@ class authorsController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(authorUpdateRequest $request, $id)
+    public function update(AuthorUpdateRequest $request, $id)
     {
-        if (!author::find($id)) {
+        if (!Author::find($id)) {
             $data = [
                 'error' => 'There is no author with this id',
             ];
             return $data;
         }
 
-        $author = author::findOrFail($id);
-        $authorAuth = author::find(auth()->user()->id);
+        $author = Author::findOrFail($id);
+        $authorAuth = Author::find(auth()->user()->id);
         if ($authorAuth->id != $author->id) {
             $data = [
                 'message' => 'This is not Your profile. Your profile',

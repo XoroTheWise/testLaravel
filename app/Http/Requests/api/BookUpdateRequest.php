@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
-
-use Illuminate\Http\Exceptions\HttpResponseException;
+namespace App\Http\Requests\api;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use function response;
 
-class bookUpdateRequest extends FormRequest
+class BookUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

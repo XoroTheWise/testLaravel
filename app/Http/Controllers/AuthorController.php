@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthorRequest;
-use App\Models\author;
+use App\Models\Author;
 
 class AuthorController extends Controller
 {
@@ -25,19 +25,19 @@ class AuthorController extends Controller
 
     public function show($id)
     {
-        $author = author::find($id);
+        $author = Author::find($id);
         return view('author.show', compact('author'));
     }
 
     public function edit($id)
     {
-        $author = author::find($id);
+        $author = Author::find($id);
         return view('author.edit', compact('author'));
     }
 
     public function update(AuthorRequest $request, $id)
     {
-        $author = author::find($id);
+        $author = Author::find($id);
         $data = $request->validated();
         $author->update($data);
         return redirect()->route('author.show', $author->id);
@@ -45,7 +45,7 @@ class AuthorController extends Controller
 
     public function destroy($id)
     {
-        $author = author::find($id);
+        $author = Author::find($id);
         $author->delete();
         return redirect()->route('author.index');
     }

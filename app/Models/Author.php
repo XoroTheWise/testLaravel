@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\Author
@@ -31,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Author extends Model
+class Author extends User
 {
     use HasFactory;
 

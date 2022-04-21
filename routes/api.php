@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\BooksController;
-use App\Http\Controllers\Api\authorsController;
+use App\Http\Controllers\Api\AuthorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +32,10 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::group(['namespace' => 'author', 'middleware' => 'jwt.auth'], function () {
-    Route::put('/book-update/{id}', [BooksController::class, 'update']);
-    Route::delete('/book-delete/{id}', [BooksController::class, 'destroy']);
-    Route::post('/author-update/{id}', [authorsController::class, 'update']);
+
+
+Route::group(['namespace' => 'api', 'middleware' => 'jwt.auth'], function () {
+        Route::put('/book/{id}', [BooksController::class, 'update']);
+        Route::delete('/book/{id}', [BooksController::class, 'destroy']);
+        Route::post('/author/{id}', [AuthorsController::class, 'update']);
 });
